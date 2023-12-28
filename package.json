@@ -1,0 +1,13 @@
+{
+  "name": "dynmap-snapshot",
+  "version": "0.1.0",
+  "main": "index.js",
+  "type": "module",
+  "author": "euxn23",
+  "license": "MIT",
+  "devDependencies": {
+    "@cloudflare/workers-types": "^4.20231218.0",
+    "prettier": "^3.1.1",
+    "wrangler": "^3.22.1"
+  }
+}

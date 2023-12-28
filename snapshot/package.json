@@ -1,0 +1,13 @@
+{
+  "name": "@dynmap-snapshot/snapshot",
+  "version": "0.1.0",
+  "main": "index.js",
+  "type": "module",
+  "author": "euxn23",
+  "license": "MIT",
+  "dependencies": {
+    "@cloudflare/puppeteer": "^0.0.5",
+    "@types/luxon": "^3.3.7",
+    "luxon": "^3.4.4"
+  }
+}
