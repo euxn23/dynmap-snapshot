@@ -10,7 +10,7 @@ const worker: ExportedHandler<Env> = {
     }
     const imagesObjects = await env.R2.list({ prefix: prefix })
     const imagesPaths = imagesObjects.objects.map((object) => object.key)
-    return new Response(JSON.stringify(imagesPaths))
+    return new Response(JSON.stringify(imagesPaths), { headers: { 'Access-Control-Allow-Origin': '*' } })
   },
 }
 
