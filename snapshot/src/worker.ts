@@ -17,7 +17,7 @@ const worker: ExportedHandler<Env> = {
   async scheduled(_event, env, _ctx) {
     const now = DateTime.now().setZone('Asia/Tokyo')
 
-    const hourlyTimestamp = `${now.get('year')}-${('0' + (now.get('month') + 1)).slice(-2)}-${('0' + now.get('day')).slice(-2)}T${('0' + now.get('hour')).slice(
+    const hourlyTimestamp = `${now.get('year')}-${('0' + (now.get('month'))).slice(-2)}-${('0' + now.get('day')).slice(-2)}T${('0' + now.get('hour')).slice(
       -2,
     )}-00-00`
 
