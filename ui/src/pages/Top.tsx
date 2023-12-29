@@ -19,7 +19,7 @@ export function Top() {
     <Flex direction="column" justify="center" align="center" width="100%" gap="4">
       <Flex direction="column" align="center" justify="center" className={top} gap="2">
         <Center>
-          <ImageContainer type="home" images={imagesSubject.value[heroImage]} />
+          <ImageContainer type={heroImage} images={imagesSubject.value[heroImage]} />
         </Center>
         <Flex gap="4">
           {imageTypes
