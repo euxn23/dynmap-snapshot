@@ -21,7 +21,7 @@ function App() {
           </Center>
         }
       >
-        <Theme color="blue">
+        <Theme accentColor={'gold'} hasBackground={false}>
           <Top />
         </Theme>
       </Suspense>
