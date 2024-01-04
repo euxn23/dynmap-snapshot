@@ -56,7 +56,7 @@ export function ImageContainer({ className, type, images }: { className?: string
               </Button>
             </>
           )}
-          <Text className={imageBoxTime}>{`${date.year}-${date.month}-${date.day} ${date.hour}:00:00`}</Text>
+          <Text className={imageBoxTime}>{`${date.year}-${`0${date.month}`.slice(-2)}-${`0${date.day}`.slice(-2)} ${`0${date.hour}`.slice(-2)}:00:00`}</Text>
         </Box>
         <Flex justify="center" gap="2">
           <Button disabled={index === 0} onClick={() => setIndex(0)}>
