@@ -17,6 +17,7 @@ export function ImageContainer({ className, type, images }: { className?: string
   return (
     <>
       <Helmet>
+        {index !== 0 && <link rel="preload" href={`${R2_ENDPOINT}/${images[0]}`} as="image" type="image/png" />}
         {index >= 24 && <link rel="preload" href={`${R2_ENDPOINT}/${images[index - 24]}`} as="image" type="image/png" />}
         {index >= 12 && <link rel="preload" href={`${R2_ENDPOINT}/${images[index - 12]}`} as="image" type="image/png" />}
         {index >= 6 && <link rel="preload" href={`${R2_ENDPOINT}/${images[index - 6]}`} as="image" type="image/png" />}
@@ -25,6 +26,7 @@ export function ImageContainer({ className, type, images }: { className?: string
         {index < images.length - 6 && <link rel="preload" href={`${R2_ENDPOINT}/${images[index + 6]}`} as="image" type="image/png" />}
         {index < images.length - 12 && <link rel="preload" href={`${R2_ENDPOINT}/${images[index + 12]}`} as="image" type="image/png" />}
         {index < images.length - 24 && <link rel="preload" href={`${R2_ENDPOINT}/${images[index + 24]}`} as="image" type="image/png" />}
+        {index !== images.length - 1 && <link rel="preload" href={`${R2_ENDPOINT}/${images[images.length]}`} as="image" type="image/png" />}
       </Helmet>
       <Flex direction="column" gap="2" className={className}>
         <Box className={imageBox} height="100%" width="100%">
@@ -57,6 +59,9 @@ export function ImageContainer({ className, type, images }: { className?: string
           <Text className={imageBoxTime}>{`${date.year}-${date.month}-${date.day} ${date.hour}:00:00`}</Text>
         </Box>
         <Flex justify="center" gap="2">
+          <Button disabled={index === 0} onClick={() => setIndex(0)}>
+            {'<<'}
+          </Button>
           <Button disabled={index < 24} onClick={() => setIndex(index - 24)}>
             +1D
           </Button>
@@ -80,6 +85,9 @@ export function ImageContainer({ className, type, images }: { className?: string
           </Button>
           <Button disabled={index > images.length - 25} onClick={() => setIndex(index + 24)}>
             -1D
+          </Button>
+          <Button disabled={index === images.length - 1} onClick={() => setIndex(images.length - 1)}>
+            {'>>'}
           </Button>
         </Flex>
       </Flex>
