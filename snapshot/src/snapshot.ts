@@ -1,8 +1,8 @@
-import { Browser } from '@cloudflare/puppeteer'
+import { Browser, Viewport } from '@cloudflare/puppeteer'
 
-export async function snapshot(browser: Browser, url: string): Promise<Buffer> {
+export async function snapshot(browser: Browser, url: string, viewport: Viewport = { width: 3840, height: 2160 }): Promise<Buffer> {
   const page = await browser.newPage()
-  await page.setViewport({ width: 3840, height: 2160 })
+  await page.setViewport(viewport)
 
   await page.goto(url, { waitUntil: 'networkidle0' })
   const screenshot = (await page.screenshot()) as Buffer
