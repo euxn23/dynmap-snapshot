@@ -3,16 +3,16 @@ import { useState } from 'react'
 import { Text } from '@radix-ui/themes'
 import { R2_ENDPOINT } from '../env'
 import { DateTime } from 'luxon'
-import { imageBox, imageBoxButton, imageBoxTime, imageContent } from './ImageContainer.css'
+import { imageBox, imageSelectMainButton, imageBoxTime, imageContent, imageZoomButtons, imageZoomButton } from './ImageContainer.css'
 import { heroImageSubject } from '../subjects/heroImage.ts'
 import { Images } from '../subjects/images.ts'
 import { Helmet } from 'react-helmet-async'
+import { TransformComponent, TransformWrapper } from 'react-zoom-pan-pinch'
 
 export function ImageContainer({ className, type, images }: { className?: string; type: keyof Images; images: string[] }) {
   const [index, setIndex] = useState(0)
   const image = `${R2_ENDPOINT}/${images[index]}`
   const date = DateTime.fromFormat(images[index], `'${type}/'yyyy-MM-dd'T'HH-mm-ss'.png'`)
-  console.log(date)
 
   return (
     <>
@@ -28,11 +28,31 @@ export function ImageContainer({ className, type, images }: { className?: string
       </Helmet>
       <Flex direction="column" gap="2" className={className}>
         <Box className={imageBox} height="100%" width="100%">
-          <img src={image} className={imageContent} rel="preload" height="3840px" width="2140px" />
-          {type !== heroImageSubject.value && (
-            <Button className={imageBoxButton} onClick={() => heroImageSubject.next(type)}>
-              メインにする
-            </Button>
+          {type === heroImageSubject.value ? (
+            <TransformWrapper key={type} initialScale={1} wheel={{ disabled: true }} disablePadding={true}>
+              {({ zoomIn, zoomOut }) => (
+                <>
+                  <TransformComponent>
+                    <img src={image} className={imageContent} rel="preload" height="3840px" width="2140px" />
+                  </TransformComponent>
+                  <Flex className={imageZoomButtons} gap="2">
+                    <Button onClick={() => zoomIn()} className={imageZoomButton}>
+                      +
+                    </Button>
+                    <Button onClick={() => zoomOut()} className={imageZoomButton}>
+                      -
+                    </Button>
+                  </Flex>
+                </>
+              )}
+            </TransformWrapper>
+          ) : (
+            <>
+              <img src={image} className={imageContent} rel="preload" height="3840px" width="2140px" />
+              <Button className={imageSelectMainButton} onClick={() => heroImageSubject.next(type)}>
+                メインにする
+              </Button>
+            </>
           )}
           <Text className={imageBoxTime}>{`${date.year}-${date.month}-${date.day} ${date.hour}:00:00`}</Text>
         </Box>

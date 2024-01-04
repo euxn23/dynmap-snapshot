@@ -9,7 +9,21 @@ export const imageContent = style({
   width: '100%',
 })
 
-export const imageBoxButton = style({
+export const imageZoomButtons = style({
+  position: 'absolute',
+  top: '16px',
+  left: '16px',
+})
+
+export const imageZoomButton = style({
+  width: '32px',
+  height: '32px',
+  display: 'flex',
+  justifyContent: 'center',
+  alignItems: 'center',
+})
+
+export const imageSelectMainButton = style({
   position: 'absolute',
   top: '16px',
   right: '16px',
