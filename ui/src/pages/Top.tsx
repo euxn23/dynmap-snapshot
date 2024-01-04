@@ -30,6 +30,9 @@ export function Top() {
         <meta property="og:url" content="https://history.minecraft.youkou.dev" />
         <meta property="og:type" content="website" />
         <meta property="og:image" content={`${R2_ENDPOINT}/${images.home[0]}`} />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="揺光" />
+        <meta name="twitter:site" content="@euxn23" />
       </Helmet>
       <Flex direction="column" justify="center" align="center" width="100%" gap="4">
         <Flex direction="column" align="center" justify="center" width="100%" className={header}>
